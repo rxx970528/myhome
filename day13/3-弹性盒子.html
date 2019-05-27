@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			*{padding: 0;margin: 0;}
+			li{list-style-type: none;}
+			
+			.flex-container{
+				border: 1px solid red;
+				/* height: 400px; */
+				/* width: 280px; */
+				
+				/* 把父元素变成弹性容器,就可以控制子元素排版(子元素变成了弹性子元素)*/
+				display: -webkit-flex;
+				/* 1.默认子元素马上会水平排列 */
+				display: flex;
+				
+				/* 排版方向,了解就好 */
+				/* direction: rtl; */
+				
+				/* 2. 控制子元素的位置--*/
+				/* flex-direction: column; */
+				
+				/* 3. 把弹性子元素沿着弹性容器的主轴线（默认水平线）对齐
+				justify-content: flex-start | flex-end | center | space-between | space-around
+				主轴线:由flex-direction决定,可以设置主轴线的方向
+				flex-direction:row; 默认, 主轴线水平
+				flex-direction:column; 设置主轴线垂直
+				*/
+				/* justify-content: space-between; */
+				
+				/* 4.弹性盒子元素在侧轴（纵轴）方向上的对齐方式
+				align-items: flex-start | flex-end | center | baseline | stretch
+				stretch:高不指定,会拉伸铺满容器
+				center:垂直居中....
+				
+				在单行的情况下,控制子元素垂直方向排版比较好用
+				多行就要用align-content
+				 */
+				/* align-items: flex-start; */
+				
+				/* 5.flex-wrap: nowrap|wrap|wrap-reverse
+				指定弹性盒子的子元素换行方式
+				nowrap:默认不换行,子元素会自动计算宽度,自己设置的宽度就无效了
+				 */
+				
+				flex-wrap: wrap;
+				
+				/* 6.align-content: flex-start | flex-end | center | space-between | space-around | stretch
+				适合换行的情况,设置各个行的对齐。
+				stretch:默认拉伸
+				 */
+				/* align-content: space-around; */
+				
+			}
+			.flex-item{
+				background: #006600;
+				width: 80px;
+				height: 80px;
+				/* margin-left: 10px; */
+				margin: 5px;
+			}
+			/* order:越小越靠前 */
+			.first{
+				order: -1;
+				
+			}
+			.flex-item:last-child{
+				order: -2;
+			}
+			
+			.container{
+				width: 200px;
+				height: 200px;
+				border: 1px solid red;
+				
+				display: flex;
+				/* 侧轴默认stretch(默认值)  */
+				
+				/* 主轴 */
+				/* justify-content: center; */
+				/*  侧轴  */
+				align-items: center;
+				
+			}
+			.item{
+				background: #0000FF;
+				/* 一个方向auto:会占满,两个方向会平分 */
+				/* margin-top: auto; */
+				
+				/* 不固定大小,也能居中 */
+				/* margin: 10px; */
+			}
+			.m1{
+				flex: 1;
+			}
+			.m2{
+				/* 控制单个元素在侧轴的排版 */
+				/* align-self: stretch; */
+				/* align-self: flex-end; */
+				flex: 3;
+				background: red;
+				margin: 0 10px;
+
+			}
+			.m3{
+				flex: 2;
+			}
+			
+			.wrap{
+				border: 1px solid red;
+				display: flex;
+				flex-wrap: wrap;
+			}
+			.wrap > div{
+				background: #009900;
+			}
+			.left{
+				/*参数2:先占有预留空间,然后再去分 */
+				/* flex: 1 100px; */
+				/* flex: 1 100%; */
+				
+				/* 100%沾满了父元素剩下的空间 */
+				flex: 1 100%;
+				/* width: 100%; */
+				
+				
+				flex: 1;
+
+			}
+			div.center{
+				background: #0000FF;
+				flex: 3;
+			}
+			.right{
+				flex: 1;
+			}
+			
+			.nav ul{
+				display: flex;
+				background: red;
+				justify-content: space-around;
+				height: 50px;
+				align-items: center;
+			}
+			
+			
+			@media screen and (max-width: 768px) {
+				div.right{
+					flex: 1 100%;
+					/* width: 100%; */
+					background: #0099CC;
+				}
+			}
+			
+			
+			/* 使用选择
+			1.传统的pc端网站,考虑兼容性,尽量不用弹性布局和css3其他效果
+			
+			2.假如不兼容ie低版本浏览器,可以使用
+			
+			3.写响应式网站或者移动端网页的时候,可以随便用
+			 */
+			
+		</style>
+	</head>
+	<body>
+		<div class="flex-container">
+			<div class="flex-item">flex1</div>
+			<div class="flex-item">flex2</div>
+			<div class="flex-item first">flex3</div>
+			<div class="flex-item">flex4</div>
+			<div class="flex-item">flex5</div>
+			<div class="flex-item">flex6</div>
+			<div class="flex-item">flex7</div>
+			<div class="flex-item">flex8</div>
+			<div class="flex-item">flex9</div>
+		</div>
+		
+		<hr >
+		
+		<div class="container">
+			<div class="item m1">flex1</div>
+			<div class="item m2">flex2</div>
+			<div class="item m3">flex3</div>
+		</div>
+		
+		<hr />
+		<div class="wrap">
+			<div class="left">
+				left
+			</div>
+			<div class="center">
+				<h1>center</h1>
+				<div class="nav">
+					<ul>
+						<li>HTML</li>
+						<li>CSS</li>
+						<li>JS</li>
+						<li>放弃</li>
+					</ul>
+				</div>
+			</div>
+			<div class="right">
+				right
+			</div>
+		</div>
+	</body>
+</html>
+
+<!-- ctr+R 
+ctr+H
+-->
